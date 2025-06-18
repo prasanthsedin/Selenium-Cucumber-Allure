@@ -27,6 +27,5 @@ public class LoginSteps {
     @Then("User clicks siginin button")
     public void clickLogin() {
         loginPage.clickLogin();
-        DriverFactory.quitDriver();
     }
 }
