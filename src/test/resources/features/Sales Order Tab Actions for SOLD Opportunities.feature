@@ -1,9 +1,7 @@
 Feature: Sales Order Tab Actions for SOLD Opportunities
 
   Background:
-    Given User launches the browser
-    When User enters username "sedstart123" and password "sedstart123"
-    Then User clicks siginin button
+    Given Login to Application with "sedstart123" and password "sedstart123"
     Then Create a Account 
     And Add a Proposal to the account
     And SOLD Proposal in account page

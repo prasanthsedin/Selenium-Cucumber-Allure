@@ -25,14 +25,12 @@ public class CommonFunctions {
 	    By logoutButton = By.linkText("Log Out");
 	    
 	    public void logout() {
-//	    	 WebElement element = driver.findElement(menu);
-//	    	    Actions actions = new Actions(driver);
-//	    	    actions.moveToElement(element).perform();
+	    	WebElement menuButton=waitForElement(menu, 30000);
+	    	menuButton.click();
+	    	WebElement logOutButton=waitForElement(logoutButton, 30000);
+	    	logOutButton.click();
 
-//	        WebElement userMenu = waitForElement(menu, 3000);
-//	        userMenu.click();
-	        driver.findElement(menu).click();
-	        driver.findElement(logoutButton).click();
+	    	
 	    }
 	   
 	    public WebElement waitForElement(By locator, int timeoutInSeconds) {

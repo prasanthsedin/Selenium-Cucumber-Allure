@@ -10,18 +10,17 @@ import org.openqa.selenium.WebDriver;
 import java.io.ByteArrayInputStream;
 
 public class AllureHooks {
+	WebDriver driver;
+	 @After
+	    public void afterScenario(Scenario scenario) {
+	        driver = DriverFactory.getDriver();
 
-    WebDriver driver;
+	        if (scenario.isFailed()) {
+	            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+	            Allure.addAttachment("Screenshot on Failure", new ByteArrayInputStream(screenshot));
+	        }
 
-    @After
-    public void afterScenario(Scenario scenario) {
-        driver = DriverFactory.getDriver();
-
-        if (scenario.isFailed()) {
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment("Screenshot on Failure", new ByteArrayInputStream(screenshot));
-        }
-
-        DriverFactory.quitDriver();
-    }
+	        DriverFactory.quitDriver();
+	    }
 }
+

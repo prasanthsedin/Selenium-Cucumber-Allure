@@ -6,47 +6,22 @@ import io.cucumber.java.en.Then;
 import pages.AccountDetailsPage;
 import pages.ProposalListPage;
 import pages.SalesAgreement;
-import pages.AccountListPage.AccountListPage;
 import pages.AccountListPage.SalesOrderTab;
-import utilities.CommonFunctions;
 import utilities.DriverFactory;
 
 public class SalesOrderTabActionsForSOLDOpportunities  {
 	
-	WebDriver driver = DriverFactory.getDriver();;
-	AccountListPage accountListPage = new AccountListPage(driver);
+	WebDriver driver = DriverFactory.getDriver();
 	AccountDetailsPage accountDetailsPage= new AccountDetailsPage(driver);
-	ProposalListPage proposalListPage=new ProposalListPage(driver);
 	SalesOrderTab salesOrderTab = new SalesOrderTab(driver);
 	SalesAgreement salesAgreement = new SalesAgreement(driver);
-	CommonFunctions commonFunctions = new CommonFunctions(driver);
+	ProposalListPage proposalListPage=new ProposalListPage(driver);
 	
-	@Then("Create a Account")
-    public void create_a_account() throws Throwable {
-
-		accountListPage.clickNewButton();
-		accountListPage.enterFirstname("Test");
-		accountListPage.enterLastname("Account "+(int)(Math.random() * 100));
-		accountListPage.clickSaveButton();
-    }
-
-	@Then("Add a Proposal to the account")
-	public void add_a_proposal_to_the_account() throws Throwable {
-		
-		accountDetailsPage.clickNewButton();
-		accountDetailsPage.switchToAccountFrame();
-		accountDetailsPage.clickOnBrand();
-		accountDetailsPage.clickOnBrandSections();
-		accountDetailsPage.clickOnProposalOptions();
-		accountDetailsPage.switchToDefaultContent();
-		
-		proposalListPage.closeSytemNamePopUp();
-		proposalListPage.closeProblemsDetectedPopUp();
-		proposalListPage.clickAccountHyperLink();
-		
-	}
+	
 	@Then("SOLD Proposal in account page")
 	public void sold_proposal_in_account_page() throws Throwable {
+
+		proposalListPage.clickAccountHyperLink();
 	    accountDetailsPage.selectSOLDOptionFromStatusDropdown();
 	    accountDetailsPage.clickOnProposalOptionsToBeSold();
 	    accountDetailsPage.clickOnSaveButton();
@@ -57,10 +32,7 @@ public class SalesOrderTabActionsForSOLDOpportunities  {
 		salesOrderTab.clickOnSalesOrderTab();
 	}
 	
-	@Then("User logs out")
-	public void user_logs_out() {
-	    commonFunctions.logout(); 
-	}
+	
 	@Then("Click on actions dropdown under the Sales Order tab")
 	public void click_on_actions_dropdown_under_the_sales_order_tab() {
 	    salesOrderTab.clickOnActions();

@@ -16,10 +16,11 @@ public class DriverFactory {
         return driver;
     }
 
-    public static void quitDriver() {
+    public static WebDriver quitDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
+		return driver;
     }
 }
