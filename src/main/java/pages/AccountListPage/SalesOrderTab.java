@@ -2,37 +2,49 @@ package pages.AccountListPage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.BasePage;
+import utilities.ExceptionHandler;
 
-import utilities.CommonFunctions;
+public class SalesOrderTab extends BasePage {
 
-public class SalesOrderTab {
-	WebDriver driver;
-	CommonFunctions commonFunctions;
-	
-	public  SalesOrderTab(WebDriver driver) {
-		this.driver=driver;
-		 this.commonFunctions=new CommonFunctions(driver);
-    }
+	By saleOrderTab = By.linkText("Sales Order");
+	By actionsButton = By.xpath("//span[text()='Actions']");
+	By editOptions = By.linkText("Edit Options");
+	By printSalesAgreement = By.linkText("View/Print Sales Agreement");
 
-    By saleOrderTab = By.linkText("Sales Order");
-    By actionsButton = By.xpath("//span[text()='Actions']");
-    By editOptions = By.linkText("Edit Options");
-    By printSalesAgreement = By.linkText("View/Print Sales Agreement");
-    
+	public SalesOrderTab(WebDriver driver) {
+		super(driver);
+	}
 
-    public void clickOnSalesOrderTab() {
-    	commonFunctions.waitForElement(saleOrderTab, 3000);
-        driver.findElement(saleOrderTab).click();
-    }
-    public void clickOnActions() {
-    	commonFunctions.waitForElement(actionsButton, 3000);
-        driver.findElement(actionsButton).click();
-    }
-    public void clickOnEditOptions() {
-        driver.findElement(editOptions).click();
-    }
-    public void clickOnPrintSalesAgreement() {
-        driver.findElement(printSalesAgreement).click();
-    }
+	public void clickOnSalesOrderTab() {
+		try {
+			click(saleOrderTab, 3);
+		} catch (Exception e) {
+			ExceptionHandler.logException("clickOnSalesOrderTab", e);
+		}
+	}
 
+	public void clickOnActions() {
+		try {
+			click(actionsButton, 3);
+		} catch (Exception e) {
+			ExceptionHandler.logException("clickOnActions", e);
+		}
+	}
+
+	public void clickOnEditOptions() {
+		try {
+			click(editOptions, 3);
+		} catch (Exception e) {
+			ExceptionHandler.logException("clickOnEditOptions", e);
+		}
+	}
+
+	public void clickOnPrintSalesAgreement() {
+		try {
+			click(printSalesAgreement, 3);
+		} catch (Exception e) {
+			ExceptionHandler.logException("clickOnPrintSalesAgreement", e);
+		}
+	}
 }
