@@ -5,22 +5,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
-    static WebDriver driver;
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
-        if (driver == null) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-        }
-        return driver;
-    }
+	public static WebDriver getDriver() {
+		if (driver.get() == null) {
+			WebDriverManager.chromedriver().setup();
+			driver.set(new ChromeDriver());
+			driver.get().manage().window().maximize();
+		}
+		return driver.get();
+	}
 
-    public static WebDriver quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-		return driver;
-    }
+	public static void quitDriver() {
+		if (driver.get() != null) {
+			driver.get().quit();
+			driver.remove();
+		}
+	}
 }
