@@ -12,7 +12,7 @@ Feature: Sales Order Tab Actions for SOLD Opportunities
 Scenario: Verify 'Edit Options' is available under Sales Order actions
     Then Click on Edit Options and update two proposal
     And User logs out
-
+    
   Scenario: Verify 'View/Print Sales Agreement' is available under Sales Order actions
     Then Click the option View/Print Sales Agreement
     Given Validate the Sales Agreement details

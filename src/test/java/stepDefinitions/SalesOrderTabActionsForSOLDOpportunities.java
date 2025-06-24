@@ -71,7 +71,10 @@ public class SalesOrderTabActionsForSOLDOpportunities {
 	public void validateSalesAgreementDetails() {
 		salesAgreement.verifySaleAgreementTitle();
 		commonFunctions.closeCurrentWindowAndSwitchBackToMain();
+		commonFunctions.refreshPage();
+		commonFunctions.pause(3);
 		commonFunctions.verifyPageTitle("Account");
+		
 	}
 
 }

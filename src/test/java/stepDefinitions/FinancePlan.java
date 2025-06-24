@@ -76,18 +76,18 @@ public class FinancePlan {
         accountDetailsPage.clickOnProposalOptions();
         accountDetailsPage.switchToDefaultContent();
 
-        proposalListPage.closeSytemNamePopUp();
+        proposalListPage.closeSystemNamePopUp();
         proposalListPage.closeProblemsDetectedPopUp();
     }
 
     @Then("Click on Edit button for Proposal")
     public void click_on_edit_button_for_proposal() {
-        proposalListPage.edit1stProposalOption();
+        proposalListPage.editFirstProposalOption();
     }
 
     @Then("Update a Finance Plan")
     public void update_a_finance_plan() {
-        pOEditPage.selectAFinancePlan();
+        pOEditPage.selectFinancePlan13();
     }
 
     @Then("User logs out")

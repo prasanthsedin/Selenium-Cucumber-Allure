@@ -62,10 +62,26 @@ public class ExtentReportManager {
 
 	@AfterStep
 	public void afterStep(Scenario scenario) {
-		if (scenario.isFailed()) {
-			captureAndAttachScreenshot(scenario);
+		try {
+			WebDriver driver = DriverFactory.getDriver();
+			TakesScreenshot ts = (TakesScreenshot) driver;
+			File src = ts.getScreenshotAs(OutputType.FILE);
+
+			String stepScreenshotName = "step_" + System.currentTimeMillis() + ".png";
+			String relativePath = "../screenshots/" + stepScreenshotName;
+			String absolutePath = "target/test-output/screenshots/" + stepScreenshotName;
+
+			FileUtils.copyFile(src, new File(absolutePath));
+
+			test.get().info("📸 Step screenshot:",
+				MediaEntityBuilder.createScreenCaptureFromPath(relativePath).build());
+
+		} catch (Exception e) {
+			test.get().warning("⚠ Could not attach screenshot: " + e.getMessage());
 		}
 	}
+
+
 
 	@After
 	public void afterScenario(Scenario scenario) {
